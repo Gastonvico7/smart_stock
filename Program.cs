@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using smart_stock.Data;
+
 namespace smart_stock
 {
     public class Program
@@ -12,6 +15,10 @@ namespace smart_stock
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
             var app = builder.Build();
 
